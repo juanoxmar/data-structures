@@ -21,10 +21,14 @@ Graph.prototype.contains = function(node) {
 
 // Removes a node from the graph.
 Graph.prototype.removeNode = function(node) {
-  for (const val of this.nodes[node]) {
-    this.removeEdge(node, val);
+  if (node in this.nodes) {
+    for (const val of this.nodes[node]) {
+      this.removeEdge(node, val);
+    }
+    delete this.nodes[node];
+  } else {
+    return 'Node does not exist';
   }
-  delete this.nodes[node];
 };
 
 // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
@@ -45,8 +49,12 @@ Graph.prototype.removeEdge = function(fromNode, toNode) {
   const fromNodeIndex = _.indexOf(this.nodes[fromNode], toNode);
   const toNodeIndex = _.indexOf(this.nodes[toNode], fromNode);
 
-  this.nodes[fromNode].splice(fromNodeIndex, 1);
-  this.nodes[toNode].splice(toNodeIndex, 1);
+  if (fromNodeIndex !== -1 && toNodeIndex !== -1) {
+    this.nodes[fromNode].splice(fromNodeIndex, 1);
+    this.nodes[toNode].splice(toNodeIndex, 1);
+  } else {
+    return 'Edge does not exist';
+  }
 };
 
 // Pass in a callback which will be executed on each node of the graph.

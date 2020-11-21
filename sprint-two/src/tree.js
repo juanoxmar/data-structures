@@ -34,10 +34,18 @@ treeMethods.contains = function(target) {
   return treeContains;
 };
 
-
+treeMethods.removeChild = function(value) {
+  for (let i = 0; i < this.children.length; i++) {
+    if (this.children[i].value === value) {
+      this.children.splice(i, 1);
+      break;
+    }
+  }
+};
 
 /*
  * Complexity: What is the time complexity of the above functions?
  * addChild: O(1)
  * contains: O(n)
+ * removeChild: O(1)
  */

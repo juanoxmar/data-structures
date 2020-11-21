@@ -40,6 +40,11 @@ HashTable.prototype.remove = function(k) {
   }
 };
 
+HashTable.prototype.clearTable = function() {
+  this._storage.each((bucket, index, storage) => {
+    storage[index] = [];
+  });
+};
 
 
 /*

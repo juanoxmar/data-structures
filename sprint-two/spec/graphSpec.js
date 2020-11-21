@@ -54,6 +54,11 @@ describe('graph', function() {
     expect(graph.hasEdge(4, 5)).to.equal(false);
   });
 
+  it('should not attempt to remove nonexistent nodes and edges', function() {
+    expect(graph.removeNode()).to.equal('Node does not exist');
+    expect(graph.removeEdge()).to.equal('Edge does not exist');
+  });
+
   it('should execute a callback on each node in the graph', function() {
     var connectToFive = function(item) {
       graph.addEdge(item, 5);

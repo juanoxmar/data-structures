@@ -47,6 +47,14 @@ describe('hashTable', function() {
     window.getIndexBelowMaxForKey = oldHashFunction;
   });
 
+  it('should not have any values after clearing the table', function() {
+    hashTable.insert('Steven', 'Seagal');
+    hashTable.insert('Bob', 'Barker');
+    hashTable.clearTable();
+    expect(hashTable.retrieve('Steven')).to.equal(undefined);
+    expect(hashTable.retrieve('Bob')).to.equal(undefined);
+  });
+
   // (Advanced! Remove the extra "x" when you want the following tests to run)
   xit ('should double in size when needed', function() {
     _.each(people, function(person) {
